@@ -12,8 +12,8 @@ def index():
 @app.route('/success',methods=['GET','POST'])
 def pdf():
 	if request.method == 'POST':
-		render = render_template('pdf.html')
- 		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+		render = render_template('index1.html')
 		pdf = pdfkit.from_string(render, False, configuration=config)
 
 		response = make_response(pdf)
