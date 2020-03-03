@@ -1,4 +1,5 @@
 from flask import Flask,render_template,request,make_response
+from temp_nltk import url_rize
 import pdfkit
 
 app = Flask(__name__)
@@ -8,8 +9,21 @@ app = Flask(__name__)
 def index():
 	return render_template('index1.html')
 
-
+dic={}
 @app.route('/success',methods=['GET','POST'])
+def analyze():
+	if request.method == 'POST':
+		key = 'Key Points'
+		rawtext = request.form['raw']
+		typesum = request.form['typesum']
+		protext = url_rize(rawtext,typesum)
+		dic['para']  = protext[0]
+		dic['title'] = protext[1]
+		dic['lists'] = protext[2]
+		dic['key'] 	 = key
+	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)
+
+@app.route('/pdf',methods=['GET','POST'])
 def pdf():
 	if request.method == 'POST':
 		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
