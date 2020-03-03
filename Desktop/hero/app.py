@@ -29,7 +29,8 @@ def analyze():
 def pdf():
 	if request.method == 'POST':
 				render = render_template('pdf.html',para=dic['para'],title=dic['title'],lists=dic['lists'],key=dic['key'])
-				pdf = pdfkit.from_string(render,False)
+ 				 config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+				pdf = pdfkit.from_string(render,False,configuration=config)
 
 				response = make_response(pdf)
 				response.headers['Content-Type'] = 'application/pdf'
