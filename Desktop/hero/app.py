@@ -3,13 +3,13 @@ from temp_nltk import url_rize
 import pdfkit
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
+
 
 @app.route('/')
 def index():
 	return render_template('index1.html')
 
-dic={}
+'''dic={}
 @app.route('/success',methods=['GET','POST'])
 def analyze():
 	if request.method == 'POST':
@@ -21,14 +21,14 @@ def analyze():
 		dic['title'] = protext[1]
 		dic['lists'] = protext[2]
 		dic['key'] 	 = key
-	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)
+	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)'''
 
 @app.route('/pdf',methods=['GET','POST'])
 def pdf():
 	if request.method == 'POST':
-		render = render_template('pdf.html',para=dic['para'],title=dic['title'],lists=dic['lists'],key=dic['key'])
- 		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-		pdf = pdfkit.from_string(render, False, configuration=config)
+		render = render_template('pdf.html')#,para=dic['para'],title=dic['title'],lists=dic['lists'],key=dic['key'])
+ 		#config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+		pdf = pdfkit.from_string(render, False)#, configuration=config)
 		response = make_response(pdf)
 		response.headers['Content-Type'] = 'application/pdf'
 		response.headers['Content-Disposition'] = 'attachment; filename=summary.pdf'
