@@ -1,6 +1,5 @@
 punkt
 wordnet
-word2vec
 words
 reuters
 sample_grammars
