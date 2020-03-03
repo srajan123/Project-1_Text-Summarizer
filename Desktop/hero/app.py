@@ -23,7 +23,7 @@ def analyze():
 		dic['key'] 	 = key
 	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)'''
 
-@app.route('/pdf',methods=['GET','POST'])
+@app.route('/success',methods=['GET','POST'])
 def pdf():
 	if request.method == 'POST':
 		render = render_template('pdf.html')#,para=dic['para'],title=dic['title'],lists=dic['lists'],key=dic['key'])
