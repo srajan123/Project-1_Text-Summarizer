@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	.dif,button
+	{
+	margin-left: 30px;
+    width: 12%;
+    background-color: #ffd65d;
+    border: 1px solid #886cd300;
+    border-radius: 3px;
+    font-size: 18px;
+    letter-spacing: 1px;
+    height: 31px;
+    font-family: Consolas;
+	}
+	.dif
+	{
+		width: 22%;
+		background-color: #ffc29200;
+		font-size: 14px;
+    	font-family: Verdana;
+    	border:1px solid black;
+    	padding-left: 2px;
+	}
+	textarea
+	{
+	border: 1px solid #6c6c6c;
+    border-radius: 3px;
+    scroll-behavior: smooth;
+	}
+	</style>
+	<title></title>
+</head>
+<body>
+<center><h1 style="font-family: Comic Sans MS;text-decoration: none;background-color: #ffcab7;">Paste URL or Text to get Summary!</h1></center>
+
+ <form method="POST" action="/success" style="margin-left: 18%;">
+         <textarea name="raw" rows="10" cols="50" placeholder="Paste URL or text to Summarize..." required="true"></textarea>
+         <select style="width:15%;position: absolute;" class="dif" id="cars" name="typesum">
+			  <option value="ss">Short Summary</option>
+			  <option value="ls">Long Summary</option>
+			  <option value="ds">Detailed Summary</option>
+		</select>
+          <button name="sub" style="position: absolute;margin-left: 20%;" type="submit">Summarize</button>
+ </form>
+
+ <br><br>
+	 <div>
+		 
+		 <div style="border:1px solid black;border-radius: 7px;">
+		 	<h1 style="margin-top:0px;font-family: Gill Sans, sans-serif;background-color: #c39fe7;border-top-right-radius: 7px;border-top-left-radius: 7px;"><center>{{title}}</center></h1><p style="padding: 15px;">{{rawe}}</p>
+		 </div><br><br>
+		 <div style="border:1px solid black;border-radius: 7px;">
+		 <h3 style="margin-top: 0px; font-size: 30px;border-top-right-radius: 7px;border-top-left-radius: 7px;font-family: Arial, sans-serif;background-color: #87eb8d;"><center>{{key}}</center></h3>
+		   <ul style="border-radius: 7px;
+">
+		  {% for item in lists %}
+		    <li><p font-size: 17px;font-family: Georgia, serif;">{{ item }} </p></li>
+	  	 {% endfor %}
+	  	</ul></div>
+	 </div>
+</body>
+</html>
