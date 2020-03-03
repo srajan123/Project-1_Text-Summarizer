@@ -4,7 +4,7 @@ import re
 import nltk
 import heapq
 import validators
-nltk.download('stopwords')
+
 
 
 def url_rize(raw_urls,types):
