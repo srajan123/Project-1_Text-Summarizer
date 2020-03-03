@@ -1,22 +1,18 @@
-from flask import Flask,render_template,request
-from temp_nltk import url_rize
+from flask import Flask,render_template,make_response
+import pdfkit
 
 app = Flask(__name__)
-app.config['DEBUG'] = True
+
 @app.route('/')
 def index():
-	mess = 'I LOVE PYTHON!'
-	return render_template('index1.html',msg=mess)
+	render = render_template('index1.html')
+	pdf = pdfkit.from_string(render,False)
 
-@app.route('/success',methods=['GET','POST'])
-def analyze():
-	if request.method == 'POST':
-		dec = ' (Summarized Form)'
-		key = 'Key Points'
-		rawtext = request.form['raw']
-		typesum = request.form['typesum']
-		
-	return render_template('index2.html')
+	response = make_response(pdf)
+	response.headers['Content-Type'] = 'application/pdf'
+	response.headers['Content-Disposition'] = 'attachment; filename=out.pdf'
+
+	return response
 
 if __name__ == '__main__':
 	app.run(debug=True)
