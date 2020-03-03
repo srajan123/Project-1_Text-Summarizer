@@ -15,8 +15,8 @@ def analyze():
 		key = 'Key Points'
 		rawtext = request.form['raw']
 		typesum = request.form['typesum']
-		protext = url_rize(rawtext,typesum)
-	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],dec=dec,key=key)
+		
+	return render_template('index2.html')
 
 if __name__ == '__main__':
 	app.run(debug=True)
