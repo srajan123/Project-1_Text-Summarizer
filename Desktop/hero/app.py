@@ -8,7 +8,7 @@ app.config['DEBUG'] = True
 @app.route('/')
 def index():
 	return render_template('index1.html')
-
+'''
 dic={}
 @app.route('/success',methods=['GET','POST'])
 def analyze():
@@ -26,19 +26,16 @@ def analyze():
 @app.route('/pdf',methods=['GET','POST'])
 def pdf():
 	if request.method == 'POST':
-				render = render_template('pdf.html',para=dic['para'],title=dic['title'],lists=dic['lists'],key=dic['key'])
- 				config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-				pdf = pdfkit.from_string(render, False, configuration=config)
+		render = render_template('pdf.html',para=dic['para'],title=dic['title'],lists=dic['lists'],key=dic['key'])
+ 		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+		pdf = pdfkit.from_string(render, False, configuration=config)
 
-				response = make_response(pdf)
-				response.headers['Content-Type'] = 'application/pdf'
-				response.headers['Content-Disposition'] = 'attachment; filename=summary.pdf'
+		response = make_response(pdf)
+		response.headers['Content-Type'] = 'application/pdf'
+		response.headers['Content-Disposition'] = 'attachment; filename=summary.pdf'
 
-				return response
+		return response
 
-
-
-
-
+'''
 if __name__ == '__main__':
 	app.run(debug=True)
