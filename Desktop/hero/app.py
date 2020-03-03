@@ -2,7 +2,7 @@ from flask import Flask,render_template,request
 from temp_nltk import url_rize
 
 app = Flask(__name__)
-
+app.config['DEBUG'] = True
 @app.route('/')
 def index():
 	mess = 'I LOVE PYTHON!'
