@@ -19,4 +19,4 @@ def analyze():
 	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],dec=dec,key=key)
 
 if __name__ == '__main__':
-	app.run()
+	app.run(debug=True)
