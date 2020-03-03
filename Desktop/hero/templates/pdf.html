@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <h1 style="    background-color: #ffb8b8;text-align: center;font-size: 79px;margin-left: -27px;margin-right: 17px;width: 104%;font-family: Helvetica;margin-top: -1%;">Summary</h1>
+    <div style="margin-top: 70px;padding: 16px;
+">
+         
+         <div style="border:1.2px solid black;border-radius: 7px;">
+            <h1 style="font-size: 45px; margin-top:0px;font-family: Gill Sans, sans-serif;background-color: #c39fe7;border-top-right-radius: 7px;border-top-left-radius: 7px;"><center>{{title}}</center></h1><p style="padding: 15px;font-size: 32px;font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif; ">{{para}}</p>
+         </div><br><br>
+         <div style="border: 1.2px solid black;border-radius: 7px;margin-top: 70px;">
+         <h3 style="margin-top: 0px; font-size: 45px;border-top-right-radius: 7px;border-top-left-radius: 7px;font-family: Arial, sans-serif;background-color: #87eb8d;"><center>{{key}}</center></h3>
+           <ul style="border-radius: 7px;
+">
+          {% for item in lists %}
+            <li><p style="font-size:32px;font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;">{{ item }} </p></li>
+         {% endfor %}
+        </ul></div>
+     </div>
+</body>
+</html>

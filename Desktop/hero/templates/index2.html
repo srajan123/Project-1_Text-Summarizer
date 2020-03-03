@@ -2,7 +2,18 @@
 <html>
 <head>
 	<style>
-	.dif,button
+	#butt2
+	{
+    width: 44%;
+    border: 1px solid #aeaeae;
+    font-size: 25px;
+    border-radius: 4px;
+    background-image: linear-gradient(to right, #94ee6b , #b8e185);
+    height: 50px;
+    font-family: consolas;
+}
+		
+	.dif,#butt
 	{
 	margin-left: 30px;
     width: 12%;
@@ -34,7 +45,7 @@
 </head>
 <body>
 <center><h1 style="font-family: Comic Sans MS;text-decoration: none;background-color: #ffcab7;">Paste URL or Text to get Summary!</h1></center>
-
+<div>
  <form method="POST" action="/success" style="margin-left: 18%;">
          <textarea name="raw" rows="10" cols="50" placeholder="Paste URL or text to Summarize..." required="true"></textarea>
          <select style="width:15%;position: absolute;" class="dif" id="cars" name="typesum">
@@ -42,21 +53,26 @@
 			  <option value="ls">Long Summary</option>
 			  <option value="ds">Detailed Summary</option>
 		</select>
-          <button name="sub" style="position: absolute;margin-left: 20%;" type="submit">Summarize</button>
+          <button id="butt" name="sub" style="position: absolute;margin-left: 20%;" type="submit">Summarize</button>
  </form>
+
+<form style="margin-left: 61%;margin-bottom: 7%;margin-top: -6%;"  method="POST" action="/pdf">
+	          <button id="butt2" name="sub2" type="submit">Save as PDF</button>
+</form>
+</div>
 
  <br><br>
 	 <div>
 		 
 		 <div style="border:1px solid black;border-radius: 7px;">
-		 	<h1 style="margin-top:0px;font-family: Gill Sans, sans-serif;background-color: #c39fe7;border-top-right-radius: 7px;border-top-left-radius: 7px;"><center>{{title}}</center></h1><p style="padding: 15px;">{{rawe}}</p>
+		 	<h1 style="margin-top:0px;font-family: Gill Sans, sans-serif;background-color: #c39fe7;border-top-right-radius: 7px;border-top-left-radius: 7px;"><center>{{title}}</center></h1><p style="padding: 15px;font-size: 17px;font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;">{{rawe}}</p>
 		 </div><br><br>
 		 <div style="border:1px solid black;border-radius: 7px;">
 		 <h3 style="margin-top: 0px; font-size: 30px;border-top-right-radius: 7px;border-top-left-radius: 7px;font-family: Arial, sans-serif;background-color: #87eb8d;"><center>{{key}}</center></h3>
 		   <ul style="border-radius: 7px;
 ">
 		  {% for item in lists %}
-		    <li><p font-size: 17px;font-family: Georgia, serif;">{{ item }} </p></li>
+		    <li><p style="font-size: 17px;font-family: medium-content-serif-font, Georgia, Cambria, 'Times New Roman', Times, serif;">{{ item }} </p></li>
 	  	 {% endfor %}
 	  	</ul></div>
 	 </div>
