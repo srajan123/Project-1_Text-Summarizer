@@ -14,15 +14,15 @@ dic=""
 @app.route('/success',methods=['GET','POST'])
 def analyze():
 	if request.method == 'POST':
+		global dic
 		key = 'Key Points'
 		rawtext = request.form['raw']
 		typesum = request.form['typesum']
 		protext = url_rize(rawtext,typesum)
-		global dic
 		dic = protext[0]
 	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)
 
-@app.route('/<title>/<lists>/<key>',methods=['GET','POST'])
+@app.route('<title>/<lists>/<key>',methods=['GET','POST'])
 def pdf(title,lists,key):
 	if request.method == 'POST':
 		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
