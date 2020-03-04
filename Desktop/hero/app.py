@@ -21,7 +21,7 @@ def analyze():
 	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)
 
 @app.route('/<rawe>/<title>/<lists>/<key>',methods=['GET','POST'])
-def pdf(title,lists,key):
+def pdf(rawe,title,lists,key):
 	if request.method == 'POST':
 		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
 		pre = re.sub(r'\'s','!s',lists)
