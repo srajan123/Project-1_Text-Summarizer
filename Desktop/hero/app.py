@@ -33,7 +33,7 @@ def pdf(title,lists,key):
 		pre = re.sub(r'``','',pre)
 		pre = re.sub(r'`','"',pre)
 		final = pre.split('~')
-		config = pdfkit.configuration(wkhtmltopdf='/opt/bin/wkhtmltopdf')
+		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
 		render = render_template('pdf.html',para=dic2,title=title,lists=final,key=key)
 		pdf = pdfkit.from_string(render, False, configuration=config)
 
