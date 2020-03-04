@@ -23,7 +23,7 @@ def analyze():
 		#dic = protext[0]
 	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)
 
-@app.route('<rawe>/<title>/<lists>/<key>',methods=['GET','POST'])
+@app.route('/<rawe>/<title>/<lists>/<key>',methods=['GET','POST'])
 def pdf(rawe,title,lists,key):
 	if request.method == 'POST':
 		#dic2 = dic
