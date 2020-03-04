@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request,make_response
 from temp_nltk import url_rize
 import pdfkit
+import re
 
 app = Flask(__name__)
 
@@ -17,25 +18,29 @@ def analyze():
 		rawtext = request.form['raw']
 		typesum = request.form['typesum']
 		protext = url_rize(rawtext,typesum)
-		dic['para']  = protext[0]
-		dic['title'] = protext[1]
-		dic['lists'] = protext[2]
-		dic['key'] 	 = key
+		dic['para']=protext[0]
 	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)
 
-@app.route('/pdf',methods=['GET','POST'])
-def pdf():
+@app.route('/<title>/<lists>/<key>',methods=['GET','POST'])
+def pdf(title,lists,key):
 	if request.method == 'POST':
 		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-		render = render_template('pdf.html',para=dic['para'],title=dic['title'],lists=dic['lists'],key=dic['key'])
+		pre = re.sub(r'\'s','!s',lists)
+		pre = re.sub(r'[\'\[\]\"]','`',pre)
+		pre = re.sub(r'`,\s`','~',pre)
+		pre = re.sub(r'!','\'',pre)
+		pre = re.sub(r'``','',pre)
+		pre = re.sub(r'`','"',pre)
+		final = pre.split('~')
+		render = render_template('pdf.html',para=dic['para'],title=title,lists=final,key=key)
 		pdf = pdfkit.from_string(render, False, configuration=config)
 
 		response = make_response(pdf)
 		response.headers['Content-Type'] = 'application/pdf'
 		response.headers['Content-Disposition'] = 'attachment; filename=summary.pdf'
-
-		return response
+	
+	return response
 
 
 if __name__ == '__main__':
-	app.run(debug=True)
+	app.run()
