@@ -4,14 +4,13 @@ import pdfkit
 import re
 
 app = Flask(__name__)
-config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
 
 
 @app.route('/')
 def index():
 	return render_template('index1.html')
 
-#dic=""
+dic=""
 @app.route('/success',methods=['GET','POST'])
 def analyze():
 	if request.method == 'POST':
@@ -20,13 +19,13 @@ def analyze():
 		rawtext = request.form['raw']
 		typesum = request.form['typesum']
 		protext = url_rize(rawtext,typesum)
-		#dic = protext[0]
+		dic = protext[0]
 	return render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=key)
 
-@app.route('/<rawe>/<title>/<lists>/<key>',methods=['GET','POST'])
-def pdf(rawe,title,lists,key):
+@app.route('/pd/<title>/<lists>/<key>',methods=['GET','POST'])
+def pdf(title,lists,key):
 	if request.method == 'POST':
-		#dic2 = dic
+		dic2 = dic
 		pre = re.sub(r'\'s','!s',lists)
 		pre = re.sub(r'[\'\[\]\"]','`',pre)
 		pre = re.sub(r'`,\s`','~',pre)
@@ -34,12 +33,14 @@ def pdf(rawe,title,lists,key):
 		pre = re.sub(r'``','',pre)
 		pre = re.sub(r'`','"',pre)
 		final = pre.split('~')
-		render = render_template('pdf.html',para=rawe,title=title,lists=final,key=key)
+		config = pdfkit.configuration(wkhtmltopdf='/opt/bin/wkhtmltopdf')
+		render = render_template('pdf.html',para=dic2,title=title,lists=final,key=key)
 		pdf = pdfkit.from_string(render, False, configuration=config)
 
 		response = make_response(pdf)
 		response.headers['Content-Type'] = 'application/pdf'
 		response.headers['Content-Disposition'] = 'attachment; filename=summary.pdf'
+	
 	return response
 
 
