@@ -5,7 +5,12 @@ import nltk
 import heapq
 import validators
 
-
+headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
 
 def url_rize(raw_urls,types):
     if types == 'ss':
@@ -23,12 +28,12 @@ def url_rize(raw_urls,types):
     valid = validators.url(raw_urls)
     if valid == True:
         url = raw_urls
-       
-        source = urllib.request.urlopen(url).read()
+        request=urllib.request.Request(url,None,headers)
+        source = urllib.request.urlopen(request).read()
         soup = bs.BeautifulSoup(source,'lxml')
         text = ""
         title = soup.find('title').text
-        for paragraph in soup.find_all('p'):
+        for paragraph in soup.find_all(['p','div']):
             text += paragraph.text
     else:
         text = raw_urls
