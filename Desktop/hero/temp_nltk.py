@@ -12,15 +12,15 @@ headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KH
 
 def url_rize(raw_urls,types):
     if types == 'ss':
-        thres   = 25
-        sen_num = 7
+        thres   = 26
+        sen_num = 5
         key_sen = 3
     elif types == 'ls':
-        thres   = 30
+        thres   = 35
         sen_num = 10
         key_sen = 5
     else:
-        thres   = 36
+        thres   = 40
         sen_num = 20
         key_sen = 7
     valid = validators.url(raw_urls)
