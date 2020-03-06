@@ -4,13 +4,13 @@
 	<style>
 	#butt2
 	{
-    width: 44%;
+	width: 28%;
     border: 1px solid #aeaeae;
-    font-size: 25px;
+    font-size: 38px;
     border-radius: 4px;
-    background-image: linear-gradient(to right, #94ee6b , #b8e185);
-    height: 50px;
-    font-family: consolas;
+    background-image: linear-gradient(to right, #92ff61 , #88e68c);
+    height: 74px;
+    font-family: Helvetica;
 }
 		
 	.dif,#butt
@@ -46,8 +46,8 @@
 <body>
 <center><h1 style="font-family: Comic Sans MS;text-decoration: none;background-color: #ffcab7;">Paste URL or Text to get Summary!</h1></center>
 <div>
- <form method="POST" action="/success" style="margin-left: 18%;">
-         <textarea name="raw" rows="10" cols="50" placeholder="Paste URL or text to Summarize..." required="true"></textarea>
+ <form method="POST" action="/success" style="margin-left: 2%;">
+         <textarea style="font-size: 14px;" name="raw" rows="15" cols="70" placeholder="Paste URL or text to Summarize..." required="true"></textarea>
          <select style="width:15%;position: absolute;" class="dif" id="cars" name="typesum">
 			  <option value="ss">Short Summary</option>
 			  <option value="ls">Long Summary</option>
@@ -56,12 +56,13 @@
           <button id="butt" name="sub" style="position: absolute;margin-left: 20%;" type="submit">Summarize</button>
  </form>
 
-<form style="margin-left: 61%;margin-bottom: 7%;margin-top: -6%;"  method="POST" action="/pdf">
+
+</div>
+<br><br>
+<form style="margin-bottom: 7%;text-align: center;margin-top: -1%;"  method="POST" action="/pdf">
 	          <button id="butt2" name="sub2" type="submit">Save as PDF</button>
 </form>
-</div>
-
- <br><br>
+ <br>
  <p  style="margin-bottom: 3%; margin-left: 1%;margin-top: -3%;font-size: 15px;padding-bottom: 1%;font-family:'Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif';background-color: #ffed4ec2;border-radius:5px;"><b><u><span style="font-family:cursive;border-radius: 3px;padding: 4px;font-size: 25px;"> Tip </span></u></b>: In case of URL, if you don't find summary Satisfactory,Kindly Paste the text/Content in the Box. Also you can select <span>Details Summary</</span> option to enhance your summary by including more information.</p>
 	 <div>
 		 
