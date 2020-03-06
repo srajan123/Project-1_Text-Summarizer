@@ -8,22 +8,20 @@ import validators
 headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
        'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
-       'Accept-Encoding': 'none',
-       'Accept-Language': 'en-US,en;q=0.8',
-       'Connection': 'keep-alive'}
+       'Accept-Encoding': 'none'}
 
 def url_rize(raw_urls,types):
     if types == 'ss':
         thres   = 25
-        sen_num = 5
-        key_sen = 2
-    elif types == 'ls':
-        thres   = 29
         sen_num = 7
-        key_sen = 4
+        key_sen = 3
+    elif types == 'ls':
+        thres   = 30
+        sen_num = 10
+        key_sen = 5
     else:
-        thres   = 32
-        sen_num = 15
+        thres   = 36
+        sen_num = 20
         key_sen = 7
     valid = validators.url(raw_urls)
     if valid == True:
@@ -33,7 +31,7 @@ def url_rize(raw_urls,types):
         soup = bs.BeautifulSoup(source,'lxml')
         text = ""
         title = soup.find('title').text
-        for paragraph in soup.find_all(['p','div']):
+        for paragraph in soup.find_all(['p']):
             text += paragraph.text
     else:
         text = raw_urls
@@ -74,7 +72,7 @@ def url_rize(raw_urls,types):
     for sentence in sentences:
         for word in nltk.word_tokenize(sentence.lower()): 
             if word in word2count.keys():
-                if len(sentence.split(' ')) < 20:
+                if len(sentence.split(' ')) < 27:
                     if sentence not in sents2score.keys():
                         sents2score[sentence] = word2count[word]
                     else:

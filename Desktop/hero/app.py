@@ -14,10 +14,6 @@ def index():
 @app.route('/success',methods=['GET','POST'])
 def analyze():
 	if request.method == 'POST':
-		session.pop('key', None)
-		session.pop('title', None)
-		session.pop('para', None)
-		session.pop('lists', None)
 		session['key'] = 'Key Points'
 		rawtext = request.form['raw']
 		typesum = request.form['typesum']
