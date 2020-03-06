@@ -24,22 +24,20 @@ def analyze():
 		rend = render_template('index2.html',rawe=protext[0],title=protext[1],lists=protext[2],key=session['key'])
 		return rend
 
-
+@app.route('/indexnew')
+def indexnew():
+	config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
+	render = render_template('pdf.html',para=session['para'],title=session['title'],lists=session['lists'],key=session['key'])
+	pdf = pdfkit.from_string(render, False, configuration=config)
+	response = make_response(pdf)
+	response.headers['Content-Type'] = 'application/pdf'
+	response.headers['Content-Disposition'] = 'attachment; filename=summary.pdf'
+	return (response)
 @app.route('/pdf',methods=['GET','POST'])
 def pdf():
 	if request.method == 'POST':
-		kewy = session['key']
-		title = session['title']
-		para = session['para']
-		lists = session['lists']
-		config = pdfkit.configuration(wkhtmltopdf='./bin/wkhtmltopdf')
-		render = render_template('pdf.html',para=para,title=title,lists=lists,key=kewy)
-		pdf = pdfkit.from_string(render, False, configuration=config)
-
-		response = make_response(pdf)
-		response.headers['Content-Type'] = 'application/pdf'
-		response.headers['Content-Disposition'] = 'attachment; filename=summary.pdf'
-	return response
+	
+		return (redirect(url_for('indexnew')))
 
 
 if __name__ == '__main__':
