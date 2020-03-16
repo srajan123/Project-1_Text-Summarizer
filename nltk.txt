@@ -1,0 +1,9 @@
+punkt
+wordnet
+words
+reuters
+sample_grammars
+book_grammars
+dolch
+stopwords
+webtext
